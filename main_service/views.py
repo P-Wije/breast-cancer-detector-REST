@@ -2,7 +2,7 @@ import os
 
 from PIL import Image
 from django.conf import settings
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiResponse
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -56,7 +56,44 @@ class ImageUploadView(APIView):
                 'required': ['file']
             }
         },
-        responses={201: 'File uploaded successfully'}
+        responses={
+            201: OpenApiResponse(
+                description='Successful Response',
+                response={
+                    'application/json': {
+                        'message': 'File uploaded successfully',
+                        'file_path': '/media/your_uploaded_file.jpg'
+                    }
+                },
+                examples=[
+                    OpenApiExample(
+                        'Successful Response',
+                        description='File uploaded successfully',
+                        value={
+                            'message': 'File uploaded successfully',
+                            'file_path': '/media/your_uploaded_file.jpg'
+                        }
+                    )
+                ]
+            ),
+            400: OpenApiResponse(
+                description='Invalid image file',
+                response={
+                    'application/json': {
+                        'error': 'Invalid image file'
+                    }
+                },
+                examples=[
+                    OpenApiExample(
+                        'Error Response',
+                        description='Invalid image file',
+                        value={
+                            'error': 'Invalid image file'
+                        }
+                    )
+                ]
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         if 'file' not in request.FILES:
