@@ -1,9 +1,10 @@
 from django.db import models
+from main_service.models import DiagnosticRecord
 
 
 class Report(models.Model):
     report_id = models.BigAutoField(primary_key=True)
-    record_id = models.ForeignKey('DiagnosticRecord', on_delete=models.CASCADE)
+    record_id = models.ForeignKey(DiagnosticRecord, on_delete=models.CASCADE, db_column='record_id')
     date = models.DateTimeField()
     path = models.CharField(max_length=255)
 
