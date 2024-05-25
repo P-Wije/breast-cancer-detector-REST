@@ -17,12 +17,6 @@ class PatientListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        name = self.request.query_params.get('name')
-        age = self.request.query_params.get('age')
-        if name:
-            queryset = queryset.filter(name__icontains=name)
-        if age:
-            queryset = queryset.filter(age=age)
         return queryset
 
 class PatientDetailView(generics.RetrieveUpdateDestroyAPIView):
