@@ -1,4 +1,3 @@
-# Create your models here.
 from datetime import date
 
 from django.db import models
@@ -39,8 +38,7 @@ class Patient(models.Model):
     medConsumptionHistory = models.IntegerField(default=0)
     remarks = models.TextField(blank=True)
 
-    # Assuming scans, rois, anomalies, and edges are image fields or similar
-    scans = models.JSONField(default=list)  # or you could use ArrayField from django.contrib.postgres.fields if using PostgreSQL
+    scans = models.JSONField(default=list)
     rois = models.JSONField(default=list)
     anomalies = models.JSONField(default=list)
     edges = models.JSONField(default=list)
@@ -48,4 +46,3 @@ class Patient(models.Model):
     def __str__(self):
         return self.name
 
-# Ensure you add 'patients' to your INSTALLED_APPS in the settings.py file of your project
