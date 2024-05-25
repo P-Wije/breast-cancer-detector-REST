@@ -2,7 +2,6 @@ import os
 
 from PIL import Image
 from django.conf import settings
-from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
@@ -10,14 +9,10 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from rest_framework import generics
-
 from .filters.patient_filter import PatientFilter
-from .models import Patient, DiagnosticRecord
+from .models import DiagnosticRecord, Patient
 from .permissions import IsAuthenticatedOrReadOnly
 from .serializers import PatientSerializer, DiagnosticRecordSerializer
-from rest_framework import generics
-from .models import Patient
 from django_filters import rest_framework as filters
 
 
