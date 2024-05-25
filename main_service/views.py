@@ -15,9 +15,6 @@ class PatientListCreateView(generics.ListCreateAPIView):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = PatientFilter
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset
 
 class PatientDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()
