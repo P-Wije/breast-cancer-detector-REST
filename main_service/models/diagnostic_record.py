@@ -1,9 +1,11 @@
 from django.db import models
 
+from main_service.models import Patient
+
 
 class DiagnosticRecord(models.Model):
     record_id = models.BigAutoField(primary_key=True)
-    patient_id = models.BigIntegerField()
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, db_column='patient_id')
     date = models.DateTimeField()
     asymmetry = models.IntegerField()
     curvePattern = models.IntegerField()
