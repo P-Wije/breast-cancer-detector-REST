@@ -7,6 +7,7 @@ class Patient(models.Model):
     class Meta:
         app_label = 'main_service'
         db_table = 'patients'
+        exclude = True
 
     MARITAL_STATUS_CHOICES = [
         (0, 'Single'),
